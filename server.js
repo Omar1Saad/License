@@ -19,6 +19,7 @@ const allowedOrigins = [
   'http://localhost:3002',
   'http://127.0.0.1:3002',
   'https://grade-management-admin.vercel.app', // Admin panel URL
+  'https://license-y64y.onrender.com', // License server URL
   process.env.ADMIN_PANEL_URL // Environment variable for admin panel
 ].filter(Boolean);
 
