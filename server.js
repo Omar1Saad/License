@@ -20,19 +20,39 @@ const allowedOrigins = [
   'http://127.0.0.1:3002',
   'https://grade-management-admin.vercel.app', // Admin panel URL
   'https://license-y64y.onrender.com', // License server URL
+  'https://license-admin-panel.vercel.app', // Vercel admin panel
+  'https://*.vercel.app', // All Vercel apps
   process.env.ADMIN_PANEL_URL // Environment variable for admin panel
 ].filter(Boolean);
+
+console.log('🌐 CORS Allowed Origins:', allowedOrigins);
 
 app.use(cors({
   origin: function (origin, callback) {
     // Allow requests with no origin (like mobile apps or curl requests)
     if (!origin) return callback(null, true);
     
+    // Check exact matches first
     if (allowedOrigins.indexOf(origin) !== -1) {
       callback(null, true);
     } else {
-      console.log('CORS blocked origin:', origin);
-      callback(new Error('Not allowed by CORS'));
+      // Check wildcard patterns
+      const isAllowed = allowedOrigins.some(allowedOrigin => {
+        if (allowedOrigin.includes('*')) {
+          const pattern = allowedOrigin.replace(/\*/g, '.*');
+          const regex = new RegExp(`^${pattern}$`);
+          return regex.test(origin);
+        }
+        return false;
+      });
+      
+      if (isAllowed) {
+        callback(null, true);
+      } else {
+        console.log('CORS blocked origin:', origin);
+        console.log('Allowed origins:', allowedOrigins);
+        callback(new Error('Not allowed by CORS'));
+      }
     }
   },
   credentials: true,
