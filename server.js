@@ -80,6 +80,12 @@ app.get('/health', (req, res) => {
 app.get('/api/update-check', (req, res) => {
   const currentVersion = req.query.currentVersion || '1.0.0';
   
+  // === إعدادات GitHub Releases ===
+  // ضع اسم المستودع الخاص بك هنا
+  const GITHUB_REPO = 'Omar1Saad/Grade-Management'; // ضع اسم المستودع هنا
+  const GITHUB_REPO_OWNER = 'Omar1Saad'; // اسم المستخدم
+  const GITHUB_REPO_NAME = 'Grade-Management'; // اسم المشروع
+  
   // معلومات التحديثات المتاحة
   const updates = {
     '1.0.0': {
@@ -110,7 +116,10 @@ app.get('/api/update-check', (req, res) => {
       latestVersion: '1.2.0',
       updateType: 'app-update',
       appUpdate: {
-        downloadUrl: 'https://github.com/user/grade-management/releases/latest',
+        // استخدام GitHub Releases
+        // تنسيق الرابط:
+        // https://github.com/OWNER/REPO/releases/download/vVERSION/FILENAME
+        downloadUrl: `https://github.com/${GITHUB_REPO}/releases/download/v1.2.0/Grade-Management-Setup-1.2.0.exe`,
         version: '1.2.0',
         size: '45.2 MB',
         features: [
@@ -121,7 +130,7 @@ app.get('/api/update-check', (req, res) => {
         ]
       },
       releaseNotes: 'تحديث البرنامج - تحسينات كاملة وميزات جديدة',
-      required: true
+      required: false
     }
   };
   
