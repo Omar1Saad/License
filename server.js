@@ -69,10 +69,123 @@ app.use('/api/admin', require('./src/routes/admin'));
 
 // Health check endpoint
 app.get('/health', (req, res) => {
-  res.json({ 
-    status: 'OK', 
+  res.json({
+    status: 'OK',
     timestamp: new Date().toISOString(),
     service: 'License Server'
+  });
+});
+
+// Update system endpoints
+app.get('/api/update-check', (req, res) => {
+  const currentVersion = req.query.currentVersion || '1.0.0';
+  
+  // معلومات التحديثات المتاحة
+  const updates = {
+    '1.0.0': {
+      latestVersion: '1.1.0',
+      updateType: 'data-only',
+      dataUpdates: {
+        newFeatures: [
+          'إضافة تقارير مفصلة',
+          'تحسين واجهة المستخدم',
+          'إضافة تصدير البيانات'
+        ],
+        bugFixes: [
+          'إصلاح مشكلة في حساب الدرجات',
+          'تحسين أداء النظام'
+        ],
+        dataStructure: {
+          version: '1.1.0',
+          migrations: [
+            'add_report_templates',
+            'update_grade_calculations'
+          ]
+        }
+      },
+      releaseNotes: 'تحديث البيانات - إضافة ميزات جديدة وإصلاح أخطاء',
+      required: false
+    },
+    '1.1.0': {
+      latestVersion: '1.2.0',
+      updateType: 'app-update',
+      appUpdate: {
+        downloadUrl: 'https://github.com/user/grade-management/releases/latest',
+        version: '1.2.0',
+        size: '45.2 MB',
+        features: [
+          'تحسينات في الأداء',
+          'واجهة مستخدم جديدة',
+          'نظام تحديث تلقائي',
+          'نسخ احتياطية محسنة'
+        ]
+      },
+      releaseNotes: 'تحديث البرنامج - تحسينات كاملة وميزات جديدة',
+      required: true
+    }
+  };
+  
+  const update = updates[currentVersion];
+  
+  if (update) {
+    res.json({
+      success: true,
+      hasUpdate: true,
+      ...update,
+      timestamp: new Date().toISOString()
+    });
+  } else {
+    res.json({
+      success: true,
+      hasUpdate: false,
+      message: 'أنت تستخدم أحدث إصدار',
+      timestamp: new Date().toISOString()
+    });
+  }
+});
+
+// Data update endpoint
+app.post('/api/data-update', (req, res) => {
+  const { currentVersion, updateType } = req.body;
+  
+  if (updateType === 'data-only') {
+    res.json({
+      success: true,
+      message: 'تم تحديث البيانات بنجاح',
+      dataUpdates: {
+        newFeatures: [
+          'إضافة تقارير مفصلة',
+          'تحسين واجهة المستخدم'
+        ],
+        bugFixes: [
+          'إصلاح مشكلة في حساب الدرجات'
+        ]
+      },
+      timestamp: new Date().toISOString()
+    });
+  } else {
+    res.status(400).json({
+      success: false,
+      error: 'نوع التحديث غير صحيح'
+    });
+  }
+});
+
+// App update endpoint
+app.get('/api/app-update/:version', (req, res) => {
+  const { version } = req.params;
+  
+  res.json({
+    success: true,
+    version: version,
+    downloadUrl: 'https://github.com/user/grade-management/releases/latest',
+    releaseNotes: 'تحديث البرنامج - تحسينات كاملة وميزات جديدة',
+    features: [
+      'تحسينات في الأداء',
+      'واجهة مستخدم جديدة',
+      'نظام تحديث تلقائي'
+    ],
+    timestamp: new Date().toISOString()
   });
 });
 

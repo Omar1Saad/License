@@ -8,10 +8,6 @@ class Database {
 
   async init() {
     try {
-      console.log('🔧 Database initialization started...');
-      console.log('📊 Database type:', this.dbType);
-      console.log('🌐 Environment:', process.env.NODE_ENV);
-      console.log('🔗 DATABASE_URL:', process.env.DATABASE_URL ? 'Set' : 'Not set');
       
       if (this.dbType === 'postgresql') {
         console.log('🐘 Initializing PostgreSQL...');
