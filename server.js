@@ -93,7 +93,7 @@ app.get('/api/update-check', (req, res) => {
       latestVersion: '1.1.0',
       updateType: 'app-update',
       appUpdate: {
-        downloadUrl: 'https://github.com/Omar1Saad/Grade-Management/releases/download/v1.1.0/%D9%86%D8%B8%D8%A7%D9%85%20%D8%A5%D8%AF%D8%A7%D8%B1%D8%A9%20%D8%AF%D8%B1%D8%AC%D8%A7%D8%AA%20%D8%A7%D9%84%D8%B7%D9%84%D8%A8%D8%A9-1.1.0.AppImage',
+        downloadUrl: 'https://github.com/Omar1Saad/Grade-Management/releases/download/v1.1.0/-1.1.0.AppImage',
         version: '1.1.0',
         size: '117 MB',
         features: [
