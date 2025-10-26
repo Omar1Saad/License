@@ -93,6 +93,8 @@ app.get('/api/update-check', (req, res) => {
       latestVersion: '1.1.0',
       updateType: 'data-only',
       dataUpdates: {
+        downloadUrl: `https://github.com/Omar1Saad/Grade-Management/releases/download/v1.1.0/-1.1.0.AppImage`,
+        size: '112 MB',
         newFeatures: [
           'إضافة نظام التحديثات التلقائية',
           'إضافة نظام النسخ الاحتياطية',
