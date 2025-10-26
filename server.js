@@ -91,10 +91,10 @@ app.get('/api/update-check', (req, res) => {
     // الإصدار 1.0.0 هو الأول - لا يوجد تحديثات له
     // '1.0.0': { ... } - تم حذفه لأنه الإصدار الأول
     
-    // ====== التحديث الأول: من 1.0.0 إلى 1.1.0 ======
+    // ====== التحديث الوحيد: من 1.0.0 إلى 1.1.0 ======
     '1.0.0': {
       latestVersion: '1.1.0',
-      updateType: 'data-only',  // أو 'app-update' للتحديث الكامل
+      updateType: 'data-only',  // تحديث بيانات فقط
       dataUpdates: {
         newFeatures: [
           'إضافة نظام التحديثات التلقائية',
@@ -112,28 +112,11 @@ app.get('/api/update-check', (req, res) => {
       },
       releaseNotes: 'الإصدار 1.1.0 - نظام التحديثات والنسخ الاحتياطية',
       required: false
-    },
-    
-    // ====== التحديث الثاني: من 1.1.0 إلى 1.2.0 ======
-    '1.1.0': {
-      latestVersion: '1.2.0',
-      updateType: 'app-update',
-      appUpdate: {
-        // رابط GitHub Release
-        // ملاحظة: يجب إنشاء Release على GitHub أولاً
-        downloadUrl: `https://github.com/${GITHUB_REPO}/releases/download/v1.2.0/Grade-Management-Setup-1.2.0.exe`,
-        version: '1.2.0',
-        size: '50 MB',
-        features: [
-          'تحسينات في الأداء',
-          'واجهة مستخدم جديدة',
-          'نظام تحديث تلقائي محسن',
-          'نسخ احتياطية محسنة'
-        ]
-      },
-      releaseNotes: 'تحديث البرنامج - تحسينات كاملة وميزات جديدة',
-      required: false
     }
+    
+    // ملاحظة: الإصدار 1.1.0 هو الحالي والنهائي - لا يوجد تحديثات بعد 1.1.0
+    // عند الحاجة لإضافة تحديث جديد، أضف هنا:
+    // '1.1.0': { latestVersion: '1.2.0', ... }
   };
   
   // التحقق من وجود تحديث للإصدار الحالي
