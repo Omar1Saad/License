@@ -88,40 +88,20 @@ app.get('/api/update-check', (req, res) => {
   
   // معلومات التحديثات المتاحة
   const updates = {
-    '1.0.0': {
-      latestVersion: '1.1.0',
-      updateType: 'data-only',
-      dataUpdates: {
-        newFeatures: [
-          'إضافة تقارير مفصلة',
-          'تحسين واجهة المستخدم',
-          'إضافة تصدير البيانات'
-        ],
-        bugFixes: [
-          'إصلاح مشكلة في حساب الدرجات',
-          'تحسين أداء النظام'
-        ],
-        dataStructure: {
-          version: '1.1.0',
-          migrations: [
-            'add_report_templates',
-            'update_grade_calculations'
-          ]
-        }
-      },
-      releaseNotes: 'تحديث البيانات - إضافة ميزات جديدة وإصلاح أخطاء',
-      required: false
-    },
+    // الإصدار 1.0.0 هو الأول - لا يوجد تحديثات له
+    // '1.0.0': { ... } - تم حذفه لأنه الإصدار الأول
+    
+    // عند إصدار 1.1.0، أضف تحديثات هنا:
     '1.1.0': {
       latestVersion: '1.2.0',
       updateType: 'app-update',
       appUpdate: {
-        // استخدام GitHub Releases
-        // تنسيق الرابط:
-        // https://github.com/OWNER/REPO/releases/download/vVERSION/FILENAME
+        // رابط GitHub Release
+        // ملاحظة: يجب إنشاء Release على GitHub أولاً برابط:
+        // https://github.com/Omar1Saad/Grade-Management/releases/download/v1.2.0/Grade-Management-Setup-1.2.0.exe
         downloadUrl: `https://github.com/${GITHUB_REPO}/releases/download/v1.2.0/Grade-Management-Setup-1.2.0.exe`,
         version: '1.2.0',
-        size: '45.2 MB',
+        size: '50 MB',
         features: [
           'تحسينات في الأداء',
           'واجهة مستخدم جديدة',
@@ -134,9 +114,11 @@ app.get('/api/update-check', (req, res) => {
     }
   };
   
+  // التحقق من وجود تحديث للإصدار الحالي
   const update = updates[currentVersion];
   
   if (update) {
+    // يوجد تحديث - إرسال معلومات التحديث
     res.json({
       success: true,
       hasUpdate: true,
@@ -144,10 +126,12 @@ app.get('/api/update-check', (req, res) => {
       timestamp: new Date().toISOString()
     });
   } else {
+    // لا يوجد تحديث - الإصدار الحالي هو الأحدث
     res.json({
       success: true,
       hasUpdate: false,
       message: 'أنت تستخدم أحدث إصدار',
+      currentVersion: currentVersion,
       timestamp: new Date().toISOString()
     });
   }
@@ -184,10 +168,14 @@ app.post('/api/data-update', (req, res) => {
 app.get('/api/app-update/:version', (req, res) => {
   const { version } = req.params;
   
+  // معلومات GitHub Repository
+  const GITHUB_REPO = 'Omar1Saad/Grade-Management';
+  
   res.json({
     success: true,
     version: version,
-    downloadUrl: 'https://github.com/user/grade-management/releases/latest',
+    // رابط GitHub Release
+    downloadUrl: `https://github.com/${GITHUB_REPO}/releases/download/v${version}/Grade-Management-Setup-${version}.exe`,
     releaseNotes: 'تحديث البرنامج - تحسينات كاملة وميزات جديدة',
     features: [
       'تحسينات في الأداء',
