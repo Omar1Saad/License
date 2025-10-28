@@ -88,41 +88,23 @@ app.get('/api/update-check', (req, res) => {
   
   // معلومات التحديثات المتاحة
   const updates = {
-    // التحديث 1.0.0 → 1.1.0
-    '1.0.0': {
-      latestVersion: '1.1.0',
-      updateType: 'app-update',
-      appUpdate: {
-        downloadUrl: 'https://github.com/Omar1Saad/Grade-Management/releases/download/v1.1.0/-1.1.0.AppImage',
-        version: '1.1.0',
-        size: '117 MB',
-        features: [
-          'نظام التحديثات التلقائية',
-          'نظام النسخ الاحتياطية',
-          'رسائل خطأ واضحة',
-          'إضافة زر اختبار جديد'
-        ]
-      },
-      releaseNotes: 'الإصدار 1.1.0 - نظام التحديثات والنسخ الاحتياطية',
-      required: false
-    },
-    // التحديث 1.1.0 → 1.1.1
-    '1.1.0': {
-      latestVersion: '1.1.1',
-      updateType: 'app-update',
-      appUpdate: {
-        downloadUrl: 'https://github.com/Omar1Saad/Grade-Management/releases/download/v1.1.1/-1.1.1.AppImage',
-        version: '1.1.1',
-        size: '112 MB',
-        features: [
-          'إزالة زر الاختبار',
-          'تحسينات في الأداء',
-          'تنظيف الواجهة'
-        ]
-      },
-      releaseNotes: 'الإصدار 1.1.1 - إزالة زر الاختبار وتحسينات',
-      required: false
-    }
+    // لا يوجد تحديثات في الوقت الحالي
+    // '1.0.0': {
+    //   latestVersion: '1.1.0',
+    //   updateType: 'app-update',
+    //   appUpdate: {
+    //     downloadUrl: 'https://github.com/Omar1Saad/Grade-Management/releases/download/v1.1.0/-1.1.0.AppImage',
+    //     version: '1.1.0',
+    //     size: '117 MB',
+    //     features: [
+    //       'نظام التحديثات التلقائية',
+    //       'نظام النسخ الاحتياطية',
+    //       'رسائل خطأ واضحة',
+    //     ]
+    //   },
+    //   releaseNotes: 'الإصدار 1.1.0 - نظام التحديثات والنسخ الاحتياطية',
+    //   required: false
+    // },
   };
   
   // التحقق من وجود تحديث للإصدار الحالي
