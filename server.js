@@ -111,7 +111,7 @@ app.get('/api/update-check', (req, res) => {
       latestVersion: '1.1.1',
       updateType: 'app-update',
       appUpdate: {
-        downloadUrl: 'https://github.com/Omar1Saad/Grade-Management/releases/download/v1.1.1/نظام-إدارة-درجات-الطلبة-1.1.1.AppImage',
+        downloadUrl: 'https://github.com/Omar1Saad/Grade-Management/releases/download/v1.1.1/-1.1.1.AppImage',
         version: '1.1.1',
         size: '112 MB',
         features: [
