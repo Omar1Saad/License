@@ -92,7 +92,7 @@ app.get('/api/update-check', (req, res) => {
       latestVersion: '1.1.0',
       updateType: 'app-update',
       appUpdate: {
-        downloadUrl: 'https://github.com/Omar1Saad/Grade-Management/releases/download/v1.1.0/-1.1.0.AppImage',
+        downloadUrl: 'https://github.com/Omar1Saad/Grade-Management/releases/download/untagged-4293afb60bb2223121b1/grade-management-system-1.1.0-x86_64.AppImage',
         version: '1.1.0',
         size: '117 MB',
         features: [
